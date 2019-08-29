@@ -1,0 +1,64 @@
+<script type="text/javascript">
+    Homey.setTitle( __('pair.title') );
+ 
+    $(function() {
+        $('#add').click(function() {
+			var sensorID = parseInt($('#sensorID').val());
+            if(sensorID != '') {
+				Homey.emit('validate', {
+                sensorID: sensorID,
+            }, function(err, result) {
+                if (!err) {
+                    $('.err-msg').html('');
+                    Homey.createDevice({
+                        name: "Luftsensor "+sensorID,
+                        data: {
+                            id: sensorID,
+                        },
+                        // the store is dynamic and persistent storage for your device
+                        store: {},
+                    }, function(err, result) {
+                        if( err ) return Homey.alert( err );
+                        Homey.done();
+                    });
+                } else {
+                    $('.err-msg').html(err.message || err.toString());
+                }
+            })
+				
+				
+            } else {
+                $('.err-msg').html( __('pair.nosettings') );
+            }
+        });
+		
+		
+    })
+    </script>
+    
+    <style type="text/css">
+        .luftdaten-status {
+            display: none;
+        }
+        .buttons, .messages {
+            padding-top: 14px;
+        }
+		div.pair-container {
+    min-height: 10em;
+    display: table-cell;
+    vertical-align: middle }
+    </style>
+
+
+
+    <p data-i18n="pair.intro"></p>
+    <div class="luftdaten-pairing">
+            <div class="form-group">
+                <label for="address" data-i18n="pair.address">Sensor ID</label>
+                <input type="number" class="form-control" id="sensorID" placeholder="0" required>
+            </div>
+            <div class="form-group buttons">
+                <button id="add" class="button" data-i18n="pair.add">Add</button>
+            </div>
+    </div>
+	<p class="err-msg" style="color: #ff6300;"></p>

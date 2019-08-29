@@ -1,0 +1,9 @@
+{
+     "pair": {
+		  "intro": "You can enter a specific fine dust sensor here. You can find out the sensor ID on http://maps.luftdaten.info/ \nPlease enter the number without #.",
+          "title": "Add PM Sensor",
+          "nosettings": "Please fill in all the required fields.",
+          "notfound": "Sensor ID not found or no data",
+		  "notreachable": "The Luftdaten API is not reachable. Please try again later."
+    }
+}

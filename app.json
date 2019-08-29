@@ -1,0 +1,126 @@
+{
+  "id": "com.luftdaten",
+  "version": "0.0.1",
+  "compatibility": ">=2.4.0",
+  "sdk": 2,
+  "name": {
+    "en": "Luftdaten"
+  },
+  "description": {
+    "en": "Adds support for Luftdaten Sensors"
+  },
+  "category": [
+    "climate"
+  ],
+  "permissions": [],
+  "images": {
+    "large": "/assets/images/large.png",
+    "small": "/assets/images/small.png"
+  },
+  "author": {
+    "name": "Martin P",
+    "email": "martin@pussamsies.de"
+  },
+  "capabilities": {
+    "measure_pm10": {
+      "type": "number",
+      "title": {
+        "en": "PM10"
+      },
+      "uiComponent": "sensor",
+	  "insights": true,
+	  "icon": "/assets/measure_PM10.svg",
+      "getable": true,
+      "setable": false,
+      "units": {
+        "en": "µg/m3"
+      },
+      "decimals": 2
+    }
+  },
+      "flow": {
+        "triggers": [
+		{
+            "id": "measure_pm10_changed",
+            "title": {
+                "en": "The PM10 value has changed",
+                "nl": "The PM10 value has changed",
+				"de": "Der PM10-Wert hat sich geändert"
+            },
+			"tokens": [
+          {
+            "name": "value",
+            "type": "number",
+            "title": {
+                            "en": "PM10",
+                            "nl": "PM10",
+                            "de": "PM10"
+            },
+            "example": "20"
+          }
+		],
+            "args": [
+              {
+                "name": "device",
+                "type": "device",
+                "filter" : "driver_id=luftdaten-pmsensor"
+              }
+            ]
+        }
+       
+            ]
+        },
+  "drivers": [
+    {
+      "id": "luftdaten-pmsensor",
+      "name": {
+        "en": "Luftdaten PM Sensor"
+      },
+      "class": "sensor",
+	  
+      "capabilities": [
+        "measure_pm25",
+		"measure_pm10",
+		"alarm_pm25"
+      ],
+	  "capabilitiesOptions": {
+        "measure_pm25": {
+      "units": {
+        "en": "µg/m3"
+		}
+        }
+      },
+      "pair": [
+      {
+          "id": "start"
+      }
+      ],
+            "settings": [
+                {
+                    "type": "group",
+                    "label": {
+						"en": "Luftdaten Settings",
+						"nl": "Luftdaten Settings",
+						"de": "Luftdaten Einstellungen"
+                    },
+                    "children": [
+						{
+                            "id": "pm25alarm",
+                            "type": "number",
+                            "label": {
+                                "en": "PM2.5 Alarm",
+                                "nl": "PM2.5 Alarm",
+								"de": "PM2.5 Alarm"
+                            },
+                            "value": 50
+                        }	      
+                    ]
+                }           
+            ],
+      "images": {
+        "large": "/drivers/luftdaten-pmsensor/assets/images/large.png",
+        "small": "/drivers/luftdaten-pmsensor/assets/images/small.png"
+      }
+    }
+  ]
+}

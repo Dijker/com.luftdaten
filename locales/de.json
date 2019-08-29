@@ -1,0 +1,9 @@
+{
+     "pair": {
+		  "intro": "Du kannst hier einen bestimmten Feinstaub Sensor eintragen. Die Sensor-ID erfährst du auf http://maps.luftdaten.info/ \nBitte gebe die Zahl ohne # ein",
+          "title": "Sensor hinzufügen",
+          "nosettings": "Bitte fülle das Feld aus.",
+          "notfound": "Sensor ID nicht gefunden oder keine Daten",
+		  "notreachable": "Die Luftdaten API ist nicht erreichbar. Bitte versuche es später erneut."
+    }
+}
