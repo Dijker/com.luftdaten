@@ -1,3 +1,3 @@
 # Luftdaten
 
-Adds support for Luftdaten PM Sensors
+Adds support for reading Luftdaten PM Sensors via API
